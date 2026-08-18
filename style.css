@@ -1,4 +1,4 @@
-body, .row{
+body, .row, .grid{
     display: flex;
 }
 
@@ -8,8 +8,22 @@ body {
     gap: 10px;
 }
 
+p {
+    padding: 0;
+    margin: 0;
+}
+
 .square {
-    width: 25px;
-    height: 25px;
     border: 1px solid black;
+    flex-grow: 1;
+}
+
+.grid {
+    flex-direction: column;
+    width: 960px;
+    height: 960px;
+}
+
+.row {
+    flex: 1;
 }

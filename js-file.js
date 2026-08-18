@@ -1,10 +1,15 @@
 const grid = document.querySelector(".grid");
 const ammountButton = document.querySelector(".amount");
+const clearButton = document.querySelector(".clear");
 let isDown = false;
 let currentBackgroundColor = "";
 
 function getRandomColor() {
-    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    while(randomColor === "#FFFFFF") {
+        randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+    return randomColor;
 }
 
 function addEvents(square) {
@@ -69,6 +74,13 @@ ammountButton.addEventListener("click", () => {
     } else if (amount !== null) {
         createGrid(amount, amount);
     }
+});
+
+clearButton.addEventListener("click", () => {
+    let allSquares = document.querySelectorAll(".square");
+    allSquares.forEach(div => {
+        div.style.backgroundColor = "white";
+    });
 });
 
 createGrid(16,16);

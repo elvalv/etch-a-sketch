@@ -1,10 +1,12 @@
 const grid = document.querySelector(".grid");
+const ammountButton = document.querySelector(".amount");
 
-function createGrid() {
-    let rows = 16;
-    let columns = 16;
+function createGrid(rowAmount, columnAmount) {
+    let rows = rowAmount
+    let columns = columnAmount;
     let square = document.createElement("div");
     let rowDiv = document.createElement("div");
+    grid.replaceChildren();
 
     for (let i = 0; i < rows; i++) {
         rowDiv = document.createElement("div");
@@ -23,5 +25,13 @@ function createGrid() {
         grid.appendChild(rowDiv);
     }
 }
+ammountButton.addEventListener("click", () => {
+    let amount = prompt("How many squares on each side?");
+    if (amount > 100) {
+        alert("Too big!");
+    } else if (amount !== null) {
+        createGrid(amount, amount);
+    }
+});
 
-createGrid();
+createGrid(16,16);

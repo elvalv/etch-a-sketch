@@ -1,6 +1,7 @@
 const grid = document.querySelector(".grid");
 const ammountButton = document.querySelector(".amount");
 const clearButton = document.querySelector(".clear");
+const body = document.querySelector("body");
 let isDown = false;
 
 function getOpacity(rgbaString) {
@@ -50,12 +51,6 @@ function mouseEnter(event) {
 
 }
 
-function mouseLeave(event) {
-    if (isDown) {
-        isdown = false;
-    }
-}
-
 function mouseDown(event) {
     if(event.button === 0) {
         isDown = true;
@@ -65,13 +60,21 @@ function mouseDown(event) {
         }
 }
 
+function mouseUp(event) {
+    isDown = false;
+}
+
 function addEvents(square) {
     square.addEventListener("mouseenter", mouseEnter);
-    // square.addEventListener("mouseleave", mouseLeave);
     square.addEventListener("mousedown", mouseDown);
-    square.addEventListener("mouseup", (event) => {
-        isDown = false;
+    square.addEventListener("mouseup", mouseUp);
+}
+
+function addBodyEvents() {
+    body.addEventListener("mousedown", (event) => {
+        isDown = true;
     });
+    body.addEventListener("mouseup", mouseUp);
 }
 
 function createGrid(rowAmount, columnAmount) {
@@ -91,7 +94,9 @@ function createGrid(rowAmount, columnAmount) {
             rowDiv.appendChild(square);
         }
         grid.appendChild(rowDiv);
+        addBodyEvents();
     }
+
 }
 ammountButton.addEventListener("click", () => {
     let amount = prompt("How many squares on each side?");

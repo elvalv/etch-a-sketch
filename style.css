@@ -14,6 +14,9 @@ body {
 p {
     padding: 0;
     margin: 0;
+}
+
+.top-message {
     padding-top: 15px;
 }
 
